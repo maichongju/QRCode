@@ -19,15 +19,24 @@ public class Utility {
 		try {
 			
 			final File f = new File(path);
-			System.out.println(f.isHidden());
 			Path p = Paths.get(path);
 			Files.setAttribute(p, "dos:hidden", Boolean.TRUE, LinkOption.NOFOLLOW_LINKS);
-			System.out.println(f.isHidden());
-			//DosFileAttributes dos = Attributes.
 		} catch (NullPointerException e0) {
 			throw new Exception("File not exist!");
 		} catch (Exception e) {
 			throw e;
+		}
+	}
+	/**
+	 * This function will delete the given file path file 
+	 * @param filepath The file path need to be delete
+	 */
+	public static void deleteFile(final String filepath) {
+		try {
+			 final File f = new File(filepath);
+			 f.delete();
+		}catch (Exception e) {
+			
 		}
 	}
 }
