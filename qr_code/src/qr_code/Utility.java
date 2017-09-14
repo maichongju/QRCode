@@ -17,8 +17,12 @@ public class Utility {
 	 */
 	public static void sethidden(final String path) throws Exception {
 		try {
+			
 			final File f = new File(path);
+			System.out.println(f.isHidden());
 			Path p = Paths.get(path);
+			Files.setAttribute(p, "dos:hidden", Boolean.TRUE, LinkOption.NOFOLLOW_LINKS);
+			System.out.println(f.isHidden());
 			//DosFileAttributes dos = Attributes.
 		} catch (NullPointerException e0) {
 			throw new Exception("File not exist!");
