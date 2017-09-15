@@ -17,26 +17,45 @@ public class Utility {
 	 */
 	public static void sethidden(final String path) throws Exception {
 		try {
-			
 			final File f = new File(path);
-			Path p = Paths.get(path);
+			if (!f.exists()) {
+				throw new Exception("File not exists");
+			}
+			final Path p = Paths.get(path);
 			Files.setAttribute(p, "dos:hidden", Boolean.TRUE, LinkOption.NOFOLLOW_LINKS);
-		} catch (NullPointerException e0) {
-			throw new Exception("File not exist!");
 		} catch (Exception e) {
 			throw e;
 		}
 	}
+
 	/**
-	 * This function will delete the given file path file 
-	 * @param filepath The file path need to be delete
+	 * This function will delete the given file path file
+	 * 
+	 * @param filepath
+	 *            The file path need to be delete
 	 */
 	public static void deleteFile(final String filepath) {
 		try {
-			 final File f = new File(filepath);
-			 f.delete();
-		}catch (Exception e) {
-			
+			final File f = new File(filepath);
+			f.delete();
+		} catch (Exception e) {
+
+		}
+	}
+
+	/**
+	 * This function will return the status of the given file, true if the file is
+	 * exist false otherwise
+	 * 
+	 * @param filepath
+	 * @return boolean true if the file exist otherwise false
+	 */
+	public static boolean isFileExist(final String filepath) {
+		final File f = new File(filepath);
+		if (f.exists()) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

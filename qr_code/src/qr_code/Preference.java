@@ -19,9 +19,11 @@ public class Preference {
 	private final QR_Code qr;
 	private JFrame frame = null;
 	private final JPanel p = new JPanel();
+	private final qrcolor tempcolor;
 	private final JButton bClose = new JButton("Close");
 	private final JButton bbackground = new JButton("Change background color");
 	private final JButton bfront = new JButton("Change font color");
+	private final JButton bapply = new JButton("Apply");
 	private final JLabel lcbcolor = new JLabel("Color");
 	private final JLabel lcfcolor = new JLabel("Color");
 	private final JLabel current = new JLabel("Current Color");
@@ -31,6 +33,7 @@ public class Preference {
 	 */
 	public Preference(QR_Code qr) {
 		this.qr = qr;
+		this.tempcolor = new qrcolor(qr);
 
 	}
 
@@ -58,10 +61,10 @@ public class Preference {
 	private void setWindow() {
 		frame.addWindowListener(new windowslistener());
 		frame.setContentPane(p);
-		frame.setSize(350, 180);
+		frame.setSize(400, 180);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
+		frame.setMinimumSize(frame.getSize());
 		frame.setVisible(true);
 	}
 
@@ -84,7 +87,8 @@ public class Preference {
 		hGroup.addGroup(layout.createParallelGroup().addComponent(bbackground).addComponent(bfront));
 		hGroup.addGap(30);
 		hGroup.addGroup(layout.createParallelGroup().addComponent(current).addComponent(lcbcolor).addComponent(lcfcolor)
-				.addComponent(bClose));
+				.addComponent(bapply));
+		hGroup.addGroup(layout.createParallelGroup().addComponent(bClose));
 		layout.setHorizontalGroup(hGroup);
 
 		SequentialGroup vGroup = layout.createSequentialGroup();
@@ -95,7 +99,7 @@ public class Preference {
 		vGroup.addGap(5);
 		vGroup.addGroup(layout.createParallelGroup().addComponent(bfront).addComponent(lcfcolor));
 		vGroup.addGap(10);
-		vGroup.addGroup(layout.createParallelGroup().addComponent(bClose));
+		vGroup.addGroup(layout.createParallelGroup().addComponent(bapply).addComponent(bClose));
 
 		layout.setVerticalGroup(vGroup);
 
@@ -116,7 +120,6 @@ public class Preference {
 		lcfcolor.setBackground(qr.getPenColor());
 		lcfcolor.setForeground(qr.getBackGroundColor());
 		lcfcolor.setForeground(qr.getPenColor());
-		
 
 	}
 
@@ -134,7 +137,7 @@ public class Preference {
 	}
 
 	/**
-	 * 
+	 * ButtonListener for all the button in Preference panel
 	 * @author maichongju
 	 *
 	 */
@@ -169,9 +172,12 @@ public class Preference {
 
 					break;
 				}
+
+				case "Apply": {
+
+					break;
 				}
-				System.out.println("Backgeound" + qr.getBackGroundColor());
-				System.out.println("Pen" + qr.getPenColor().toString());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

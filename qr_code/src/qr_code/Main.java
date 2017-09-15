@@ -1,5 +1,8 @@
 package qr_code;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.SwingUtilities;
@@ -30,9 +33,49 @@ public class Main {
 				frame.setLocationRelativeTo(null);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setResizable(false);
+				frame.addWindowListener(new WindowListener() {
+
+					@Override
+					public void windowActivated(WindowEvent e) {
+						
+					}
+
+					@Override
+					public void windowClosed(WindowEvent e) {
+						
+					}
+
+					@Override
+					public void windowClosing(WindowEvent e) {
+						
+					}
+
+					@Override
+					public void windowDeactivated(WindowEvent e) {
+						
+					}
+
+					@Override
+					public void windowDeiconified(WindowEvent e) {
+						
+					}
+
+					@Override
+					public void windowIconified(WindowEvent e) {
+						
+					}
+
+					@Override
+					public void windowOpened(WindowEvent e) {
+						
+					}
+					
+				});
 				frame.setVisible(true);
 			}
 			
 		};
 
+		
+		
 }
