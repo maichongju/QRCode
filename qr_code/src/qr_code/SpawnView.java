@@ -26,31 +26,76 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpawnView.
+ */
 @SuppressWarnings("serial")
 public class SpawnView extends JPanel {
+	
+	/** The Constant WIDTH. */
 	public static final int WIDTH = 350;
+	
+	/** The Constant HIGHT. */
 	public static final int HIGHT = 250;
+	
+	/** The Constant MAX_LENGTH. */
 	public static final int MAX_LENGTH = 120;
+	
+	/** The Defmsg. */
 	final String Defmsg = "Enter the content here!";
+	
+	/** The sucsta. */
 	final String sucsta = "Success";
+	
+	/** The falsta. */
 	final String falsta = "Please Try Again";
+	
+	/** The qr. */
 	final QR_Code qr;
+	
+	/** The Left panel. */
 	final JPanel LeftPanel = new JPanel();
+	
+	/** The Right panel. */
 	final JPanel RightPanel = new JPanel();
+	
+	/** The B enter. */
 	final JButton BEnter = new JButton("Enter");
+	
+	/** The B calcel. */
 	final JButton BCalcel = new JButton("Reset");
+	
+	/** The B save as. */
 	final JButton BSaveAs = new JButton("Save As");
+	
+	/** The textarea. */
 	final JTextArea textarea = new JTextArea(Defmsg);
+	
+	/** The status. */
 	final JLabel status = new JLabel("Welcome", JLabel.CENTER);
+	
+	/** The qrcode. */
 	final JLabel qrcode = new JLabel();
+	
+	/** The wordcount. */
 	final JPanel wordcount = new JPanel();
+	
+	/** The wcurrent. */
 	final JLabel wcurrent = new JLabel("", JLabel.RIGHT);
+	
+	/** The wmax. */
 	final JLabel wmax = new JLabel("", JLabel.LEFT);
+	
+	/** The menu. */
 	final Menu menu;
 
 	/**
 	 * Setting the layout for the main view Contain two main layout, Left Panel and
-	 * Right Panel
+	 * Right Panel.
+	 *
+	 * @param menu the menu
+	 * @param qr the qr
 	 */
 	public SpawnView(final Menu menu,final QR_Code qr) {
 		this.menu = menu;
@@ -65,7 +110,7 @@ public class SpawnView extends JPanel {
 	}
 
 	/**
-	 * This function will set all the layout for the left hand side for the program
+	 * This function will set all the layout for the left hand side for the program.
 	 */
 	private void setLeftLayout() {
 		LeftPanel.setLayout(new BorderLayout());
@@ -94,7 +139,7 @@ public class SpawnView extends JPanel {
 	}
 
 	/**
-	 * This function will set all the layout for the right hand side for the program
+	 * This function will set all the layout for the right hand side for the program.
 	 */
 	private void setRightLayout() {
 		// Set up the beginning image
@@ -120,7 +165,7 @@ public class SpawnView extends JPanel {
 	}
 
 	/**
-	 * This function will set up all the components for word count panel
+	 * This function will set up all the components for word count panel.
 	 */
 	private void setWordCount() {
 		wordcount.setLayout(new GridLayout(1, 2));
@@ -132,7 +177,7 @@ public class SpawnView extends JPanel {
 	}
 
 	/**
-	 * The function will set up the text area
+	 * The function will set up the text area.
 	 */
 	private void setTextArea() {
 
@@ -142,13 +187,16 @@ public class SpawnView extends JPanel {
 		textarea.addKeyListener(new TextAreaListener());
 	}
 
+	/**
+	 * Update current word count.
+	 */
 	private void updateCurrentWordCount() {
 		wcurrent.setText(Integer.toString(textarea.getText().length()));
 	}
 
 	/**
-	 * Get the text showing on the Text Area
-	 * 
+	 * Get the text showing on the Text Area.
+	 *
 	 * @return String that showing on the Text Area
 	 */
 	private String getTextAreaText() {
@@ -156,31 +204,28 @@ public class SpawnView extends JPanel {
 	}
 
 	/**
-	 * Set the text on the text area
-	 * 
-	 * @param text
-	 *            The text need to be set on the text area (String)
+	 * Set the text on the text area.
+	 *
+	 * @param text            The text need to be set on the text area (String)
 	 */
 	private void setTextAreaText(String text) {
 		textarea.setText(text);
 	}
 
 	/**
-	 * Set the text on the status label
-	 * 
-	 * @param text
-	 *            The text need to be set on the status label (String)
+	 * Set the text on the status label.
+	 *
+	 * @param text            The text need to be set on the status label (String)
 	 */
 	private void setStatusText(String text) {
 		status.setText(text);
 	}
 
 	/**
-	 * This function will return the Current path of the project
-	 * 
+	 * This function will return the Current path of the project.
+	 *
 	 * @return String. The path of the current project
-	 * @throws IOException
-	 *             IF the file have error then it will throw the IOException
+	 * @throws IOException             IF the file have error then it will throw the IOException
 	 */
 	public static String getCurrentPath() throws IOException {
 		File file = new File("");
@@ -190,12 +235,10 @@ public class SpawnView extends JPanel {
 
 	/**
 	 * This function will using the image the provide from the image path to the
-	 * QrCode
-	 * 
-	 * @param imgpath
-	 *            The path of the image need to be set
-	 * @throws IOException
-	 *             If there is no such file it will throw an exception out
+	 * QrCode.
+	 *
+	 * @param imgpath            The path of the image need to be set
+	 * @throws IOException             If there is no such file it will throw an exception out
 	 */
 	private void setQrCode(String imgpath) throws IOException {
 		qrcode.setIcon(new ImageIcon(ImageIO.read(new File(imgpath))));
@@ -204,13 +247,15 @@ public class SpawnView extends JPanel {
 
 
 	/**
-	 * Inner class for all the Action listener for all the button
-	 * 
-	 * @author maichongju
+	 * Inner class for all the Action listener for all the button.
 	 *
+	 * @author maichongju
 	 */
 	private class ButtonListener implements ActionListener {
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String name = e.getActionCommand(); // Get the String that show on the button
@@ -260,9 +305,9 @@ public class SpawnView extends JPanel {
 		/**
 		 * This function will take a file path and save the file to user define location
 		 * By default the type of file will be save as .png
-		 * 
-		 * @param ifilepath
-		 *            The file path need to be save as
+		 *
+		 * @param ifilepath            The file path need to be save as
+		 * @throws Exception the exception
 		 */
 		private void SaveAs(String ifilepath) throws Exception {
 			JFileChooser chooser = new JFileChooser();
@@ -298,11 +343,17 @@ public class SpawnView extends JPanel {
 	 */
 	private class TextAreaListener implements KeyListener {
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+		 */
 		@Override
 		public void keyPressed(KeyEvent key) {
 
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+		 */
 		@Override
 		public void keyReleased(KeyEvent key) {
 			updateCurrentWordCount();
@@ -317,6 +368,9 @@ public class SpawnView extends JPanel {
 			}
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+		 */
 		@Override
 		public void keyTyped(KeyEvent key) {
 

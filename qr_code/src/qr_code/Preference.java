@@ -14,26 +14,53 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Preference.
+ */
 public class Preference {
 
+	/** The qr. */
 	private final QR_Code qr;
+	
+	/** The temp qr. */
+	private final QR_Code temp_qr;
+	
+	/** The frame. */
 	private JFrame frame = null;
+	
+	/** The p. */
 	private final JPanel p = new JPanel();
-	private final qrcolor tempcolor;
+	
+	/** The b close. */
 	private final JButton bClose = new JButton("Close");
+	
+	/** The bbackground. */
 	private final JButton bbackground = new JButton("Change background color");
+	
+	/** The bfront. */
 	private final JButton bfront = new JButton("Change font color");
+	
+	/** The bapply. */
 	private final JButton bapply = new JButton("Apply");
+	
+	/** The lcbcolor. */
 	private final JLabel lcbcolor = new JLabel("Color");
+	
+	/** The lcfcolor. */
 	private final JLabel lcfcolor = new JLabel("Color");
+	
+	/** The current. */
 	private final JLabel current = new JLabel("Current Color");
 
 	/**
-	 * 
+	 * Instantiates a new preference.
+	 *
+	 * @param qr the qr
 	 */
 	public Preference(QR_Code qr) {
 		this.qr = qr;
-		this.tempcolor = new qrcolor(qr);
+		this.temp_qr = new QR_Code(qr);
 
 	}
 
@@ -56,7 +83,7 @@ public class Preference {
 	}
 
 	/**
-	 * This function will set up all the window for the preference window
+	 * This function will set up all the window for the preference window.
 	 */
 	private void setWindow() {
 		frame.addWindowListener(new windowslistener());
@@ -69,8 +96,8 @@ public class Preference {
 	}
 
 	/**
-	 * Will show if the Preference is show
-	 * 
+	 * Will show if the Preference is show.
+	 *
 	 * @return true Preference window is shown false otherwise
 	 */
 	public boolean isShow() {
@@ -78,7 +105,7 @@ public class Preference {
 	}
 
 	/**
-	 * This function will set up all the panel for the preference window
+	 * This function will set up all the panel for the preference window.
 	 */
 	private void setPanel() {
 		GroupLayout layout = new GroupLayout(frame.getContentPane());
@@ -109,7 +136,7 @@ public class Preference {
 	}
 
 	/**
-	 * This function will set up the label color
+	 * This function will set up the label color.
 	 */
 	private void setColor() {
 		lcbcolor.setOpaque(true);
@@ -124,7 +151,7 @@ public class Preference {
 	}
 
 	/**
-	 * This function will set up all the button for the preference window
+	 * This function will set up all the button for the preference window.
 	 */
 	private void setButton() {
 		bbackground.setActionCommand("BackgroundColor");
@@ -137,12 +164,15 @@ public class Preference {
 	}
 
 	/**
-	 * ButtonListener for all the button in Preference panel
-	 * @author maichongju
+	 * ButtonListener for all the button in Preference panel.
 	 *
+	 * @author maichongju
 	 */
 	private class ButtonListener implements ActionListener {
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent key) {
 			String name = key.getActionCommand();
@@ -152,8 +182,8 @@ public class Preference {
 				case "BackgroundColor": {
 					Color temp = JColorChooser.showDialog(null, "Choose the background color", qr.getPenColor());
 					if (temp != null) {
-						qr.setBackgroundColor(temp);
-						lcbcolor.setBackground(qr.getBackGroundColor());
+						temp_qr.setBackgroundColor(temp);
+						lcbcolor.setBackground(temp_qr.getBackGroundColor());
 
 					}
 					break;
@@ -161,8 +191,8 @@ public class Preference {
 				case "FrontColor": {
 					Color temp = JColorChooser.showDialog(null, "Choose the background color", qr.getPenColor());
 					if (temp != null) {
-						qr.setPenColor(temp);
-						lcfcolor.setBackground(qr.getPenColor());
+						temp_qr.setPenColor(temp);
+						lcfcolor.setBackground(temp_qr.getPenColor());
 					}
 					break;
 				}
@@ -172,9 +202,9 @@ public class Preference {
 
 					break;
 				}
-
+				//Color Bug
 				case "Apply": {
-
+					qr.ApplyColor(temp_qr);
 					break;
 				}
 				}
@@ -186,48 +216,69 @@ public class Preference {
 	}
 
 	/**
-	 * 
-	 * @author CHONGJUMAI
+	 * The Class windowslistener.
 	 *
+	 * @author CHONGJUMAI
 	 */
 	private class windowslistener implements WindowListener {
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowListener#windowActivated(java.awt.event.WindowEvent)
+		 */
 		@Override
 		public void windowActivated(WindowEvent e) {
 			// TODO Auto-generated method stub
 
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowListener#windowClosed(java.awt.event.WindowEvent)
+		 */
 		@Override
 		public void windowClosed(WindowEvent e) {
 			// TODO Auto-generated method stub
 
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowListener#windowClosing(java.awt.event.WindowEvent)
+		 */
 		@Override
 		public void windowClosing(WindowEvent e) {
 			frame = null;
 
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowListener#windowDeactivated(java.awt.event.WindowEvent)
+		 */
 		@Override
 		public void windowDeactivated(WindowEvent e) {
 			// TODO Auto-generated method stub
 
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowListener#windowDeiconified(java.awt.event.WindowEvent)
+		 */
 		@Override
 		public void windowDeiconified(WindowEvent e) {
 			// TODO Auto-generated method stub
 
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowListener#windowIconified(java.awt.event.WindowEvent)
+		 */
 		@Override
 		public void windowIconified(WindowEvent e) {
 			// TODO Auto-generated method stub
 
 		}
 
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowListener#windowOpened(java.awt.event.WindowEvent)
+		 */
 		@Override
 		public void windowOpened(WindowEvent e) {
 			// TODO Auto-generated method stub

@@ -80,8 +80,6 @@ public class Menu {
 			switch (KeyName) {
 			case "Preference": {
 				preferencec.Show();
-				// Color color = JColorChooser.showDialog(null, "Choose your color",
-				// Color.WHITE);
 				break;
 			}
 			case "About": {

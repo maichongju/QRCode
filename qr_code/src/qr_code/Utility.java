@@ -5,15 +5,18 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.DosFileAttributes;
-import java.util.jar.Attributes;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Utility.
+ */
 public class Utility {
+	
 	/**
-	 * This function will set the given path file to be hidden
-	 * 
-	 * @param path
-	 *            the file need to be hidden
+	 * This function will set the given path file to be hidden.
+	 *
+	 * @param path            the file need to be hidden
+	 * @throws Exception the exception
 	 */
 	public static void sethidden(final String path) throws Exception {
 		try {
@@ -29,10 +32,9 @@ public class Utility {
 	}
 
 	/**
-	 * This function will delete the given file path file
-	 * 
-	 * @param filepath
-	 *            The file path need to be delete
+	 * This function will delete the given file path file.
+	 *
+	 * @param filepath            The file path need to be delete
 	 */
 	public static void deleteFile(final String filepath) {
 		try {
@@ -45,9 +47,9 @@ public class Utility {
 
 	/**
 	 * This function will return the status of the given file, true if the file is
-	 * exist false otherwise
-	 * 
-	 * @param filepath
+	 * exist false otherwise.
+	 *
+	 * @param filepath the filepath
 	 * @return boolean true if the file exist otherwise false
 	 */
 	public static boolean isFileExist(final String filepath) {

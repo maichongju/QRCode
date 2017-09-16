@@ -10,20 +10,36 @@ import javax.imageio.ImageIO;
 
 import com.swetake.util.Qrcode;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class QR_Code.
+ *
  * @author maichongju
  * @version 0.1
  */
 public class QR_Code {
+	
+	/** The Constant DEFAULT_BACKGOUND_COLOR. */
+	public static final Color DEFAULT_BACKGOUND_COLOR = Color.WHITE;
+	
+	/** The Constant DEFAULT_FRONT_COLOR. */
+	public static final Color DEFAULT_FRONT_COLOR = Color.BLACK;
+	
+	/** The pen color. */
 	private Color pen_color; // Default color is black
+	
+	/** The background color. */
 	private Color background_color;
+	
+	/** The width. */
 	private int width;
+	
+	/** The height. */
 	private int height;
 
 	/**
 	 * Default width and height will be 140 the default color for the QrCode will be
-	 * black
+	 * black.
 	 */
 	public QR_Code() {
 		width = height = 140;
@@ -33,10 +49,20 @@ public class QR_Code {
 	}
 
 	/**
-	 * The dimension will be set to the closest integer value
-	 * 
-	 * @param d
-	 *            Dimension need to be set for the QrCode
+	 * Copy the other QR_Code to the current one.
+	 *
+	 * @param qr the other QR_Code object
+	 */
+	public QR_Code(QR_Code qr) {
+		this();
+		this.pen_color = qr.getPenColor();
+		this.background_color = qr.getBackGroundColor();
+	}
+
+	/**
+	 * The dimension will be set to the closest integer value.
+	 *
+	 * @param d            Dimension need to be set for the QrCode
 	 */
 	public QR_Code(Dimension d) {
 		this();
@@ -45,12 +71,10 @@ public class QR_Code {
 	}
 
 	/**
-	 * Constor with assigned width and height
-	 * 
-	 * @param width
-	 *            QrCode Width
-	 * @param height
-	 *            QrCode Height
+	 * Constructor with assigned width and height.
+	 *
+	 * @param width            QrCode Width
+	 * @param height            QrCode Height
 	 */
 	public QR_Code(final int width, final int height) {
 		this();
@@ -59,10 +83,10 @@ public class QR_Code {
 	}
 
 	/**
-	 * Constor with assigned Background Color and Front color
-	 * 
-	 * @param Background
-	 * @param front
+	 * Constructor with assigned Background Color and Front color.
+	 *
+	 * @param Background the background
+	 * @param front the front
 	 */
 	public QR_Code(final Color Background, final Color front) {
 		this();
@@ -71,17 +95,17 @@ public class QR_Code {
 	}
 
 	/**
-	 * This function will set the pen color for the QeCode
-	 * 
-	 * @param PenColor
+	 * This function will set the pen color for the QeCode.
+	 *
+	 * @param PenColor the new pen color
 	 */
 	public void setPenColor(final Color PenColor) {
 		this.pen_color = PenColor;
 	}
 
 	/**
-	 * This function will return the current pen color for the QrCode
-	 * 
+	 * This function will return the current pen color for the QrCode.
+	 *
 	 * @return current pen Color for the the QrCode
 	 */
 	public Color getPenColor() {
@@ -89,18 +113,17 @@ public class QR_Code {
 	}
 
 	/**
-	 * Set the QrCode background color to given color
-	 * 
-	 * @param background
-	 *            Background color need to be set
+	 * Set the QrCode background color to given color.
+	 *
+	 * @param background            Background color need to be set
 	 */
 	public void setBackgroundColor(final Color background) {
 		this.background_color = background;
 	}
 
 	/**
-	 * Return the current background color for the QrCode
-	 * 
+	 * Return the current background color for the QrCode.
+	 *
 	 * @return Color Current color for the QrCode
 	 */
 	public Color getBackGroundColor() {
@@ -108,7 +131,7 @@ public class QR_Code {
 	}
 
 	/**
-	 * This function will reset all the value to the default
+	 * This function will reset all the value to the default.
 	 */
 	public void Reset() {
 		width = height = 140;
@@ -117,15 +140,22 @@ public class QR_Code {
 	}
 
 	/**
+	 * This function will apply the other qr color to the current one.
+	 * @param qr the other qr project need to apply to the current one
+	 */
+	public void ApplyColor(QR_Code qr) {
+		this.background_color = qr.getBackGroundColor();
+		this.pen_color = qr.getPenColor();
+	}
+	
+	/**
 	 * Generate the QrCode with giving content and save it to the given imgpath. All
 	 * the setting are preset
-	 * 
-	 * @param content
-	 *            Information need to be convert to QRCode
-	 * @param imgpath
-	 *            Image path that the be save
-	 * @throws Exception
-	 *             All Exception
+	 *
+	 * @param content            Information need to be convert to QRCode
+	 * @param imgpath            Image path that the be save
+	 * @return the qrcode image by contents
+	 * @throws Exception             All Exception
 	 */
 	public void getQrcodeImageByContents(String content, String imgpath) throws Exception {
 
