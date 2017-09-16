@@ -8,16 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.SwingUtilities;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Main.
- */
 public class Main {
-	
+
+	public static final String DEFAULT_MESSAGE = "Hello World";
+
 	/**
 	 * Main program.
 	 *
-	 * @param args the arguments
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(runJFrame);
@@ -91,10 +90,17 @@ public class Main {
 			new File(current_path).mkdir();
 		}
 		WelcomeImage(current_path);
-		
+
 	}
-	
+
 	private static void WelcomeImage(final String path) {
+		final String imgpath = path + "\\Welcome.png";
+		final QR_Code wqr = new QR_Code();
+		try {
+			wqr.getQrcodeImageByContents(DEFAULT_MESSAGE, imgpath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
