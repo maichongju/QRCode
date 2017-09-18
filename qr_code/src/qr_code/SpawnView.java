@@ -32,61 +32,63 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 @SuppressWarnings("serial")
 public class SpawnView extends JPanel {
-	
+
+
+
 	/** The Constant WIDTH. */
 	public static final int WIDTH = 350;
-	
+
 	/** The Constant HIGHT. */
 	public static final int HIGHT = 250;
-	
+
 	/** The Constant MAX_LENGTH. */
 	public static final int MAX_LENGTH = 120;
-	
+
 	/** The Defmsg. */
 	final String Defmsg = "Enter the content here!";
-	
+
 	/** The sucsta. */
 	final String sucsta = "Success";
-	
+
 	/** The falsta. */
 	final String falsta = "Please Try Again";
-	
+
 	/** The qr. */
 	final QR_Code qr;
-	
+
 	/** The Left panel. */
 	final JPanel LeftPanel = new JPanel();
-	
+
 	/** The Right panel. */
 	final JPanel RightPanel = new JPanel();
-	
+
 	/** The B enter. */
 	final JButton BEnter = new JButton("Enter");
-	
+
 	/** The B calcel. */
 	final JButton BCalcel = new JButton("Reset");
-	
+
 	/** The B save as. */
 	final JButton BSaveAs = new JButton("Save As");
-	
+
 	/** The textarea. */
 	final JTextArea textarea = new JTextArea(Defmsg);
-	
+
 	/** The status. */
 	final JLabel status = new JLabel("Welcome", JLabel.CENTER);
-	
+
 	/** The qrcode. */
 	final JLabel qrcode = new JLabel();
-	
+
 	/** The wordcount. */
 	final JPanel wordcount = new JPanel();
-	
+
 	/** The wcurrent. */
 	final JLabel wcurrent = new JLabel("", JLabel.RIGHT);
-	
+
 	/** The wmax. */
 	final JLabel wmax = new JLabel("", JLabel.LEFT);
-	
+
 	/** The menu. */
 	final Menu menu;
 
@@ -94,10 +96,13 @@ public class SpawnView extends JPanel {
 	 * Setting the layout for the main view Contain two main layout, Left Panel and
 	 * Right Panel.
 	 *
-	 * @param menu the menu
-	 * @param qr the qr
+	 * @param menu
+	 *            menu object are passing from the menu
+	 * @param qr
+	 *            QR_Code object passed by the main frame, which will go through the
+	 *            whole program
 	 */
-	public SpawnView(final Menu menu,final QR_Code qr) {
+	public SpawnView(final Menu menu, final QR_Code qr) {
 		this.menu = menu;
 		this.qr = qr;
 		this.setSize(WIDTH, HIGHT);
@@ -139,15 +144,18 @@ public class SpawnView extends JPanel {
 	}
 
 	/**
-	 * This function will set all the layout for the right hand side for the program.
+	 * This function will set all the layout for the right hand side for the
+	 * program.
 	 */
 	private void setRightLayout() {
 		// Set up the beginning image
 		try {
-			String path = getCurrentPath() + "/Image/Welcome.png";
-			setQrCode(path);
+			String imgpath = getCurrentPath() + "\\Image\\Welcome.png";
+			setQrCode(imgpath);
 
 		} catch (IOException e) {
+			setStatusText(falsta);
+		} catch (Exception e) {
 			setStatusText(falsta);
 		}
 
@@ -206,7 +214,8 @@ public class SpawnView extends JPanel {
 	/**
 	 * Set the text on the text area.
 	 *
-	 * @param text            The text need to be set on the text area (String)
+	 * @param text
+	 *            The text need to be set on the text area (String)
 	 */
 	private void setTextAreaText(String text) {
 		textarea.setText(text);
@@ -215,7 +224,8 @@ public class SpawnView extends JPanel {
 	/**
 	 * Set the text on the status label.
 	 *
-	 * @param text            The text need to be set on the status label (String)
+	 * @param text
+	 *            The text need to be set on the status label (String)
 	 */
 	private void setStatusText(String text) {
 		status.setText(text);
@@ -225,7 +235,8 @@ public class SpawnView extends JPanel {
 	 * This function will return the Current path of the project.
 	 *
 	 * @return String. The path of the current project
-	 * @throws IOException             IF the file have error then it will throw the IOException
+	 * @throws IOException
+	 *             IF the file have error then it will throw the IOException
 	 */
 	public static String getCurrentPath() throws IOException {
 		File file = new File("");
@@ -237,14 +248,14 @@ public class SpawnView extends JPanel {
 	 * This function will using the image the provide from the image path to the
 	 * QrCode.
 	 *
-	 * @param imgpath            The path of the image need to be set
-	 * @throws IOException             If there is no such file it will throw an exception out
+	 * @param imgpath
+	 *            The path of the image need to be set
+	 * @throws IOException
+	 *             If there is no such file it will throw an exception out
 	 */
 	private void setQrCode(String imgpath) throws IOException {
 		qrcode.setIcon(new ImageIcon(ImageIO.read(new File(imgpath))));
 	}
-	
-
 
 	/**
 	 * Inner class for all the Action listener for all the button.
@@ -253,8 +264,11 @@ public class SpawnView extends JPanel {
 	 */
 	private class ButtonListener implements ActionListener {
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -306,8 +320,10 @@ public class SpawnView extends JPanel {
 		 * This function will take a file path and save the file to user define location
 		 * By default the type of file will be save as .png
 		 *
-		 * @param ifilepath            The file path need to be save as
-		 * @throws Exception the exception
+		 * @param ifilepath
+		 *            The file path need to be save as
+		 * @throws Exception
+		 *             the exception
 		 */
 		private void SaveAs(String ifilepath) throws Exception {
 			JFileChooser chooser = new JFileChooser();
@@ -343,7 +359,9 @@ public class SpawnView extends JPanel {
 	 */
 	private class TextAreaListener implements KeyListener {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 		 */
 		@Override
@@ -351,7 +369,9 @@ public class SpawnView extends JPanel {
 
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
 		 */
 		@Override
@@ -368,7 +388,9 @@ public class SpawnView extends JPanel {
 			}
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 		 */
 		@Override

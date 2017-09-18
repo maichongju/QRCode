@@ -211,8 +211,7 @@ public class QR_Code {
 			System.out.println("Done");
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
 		}
 	}
 
