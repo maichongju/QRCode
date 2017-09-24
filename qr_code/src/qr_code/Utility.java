@@ -3,6 +3,7 @@ package qr_code;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -16,19 +17,13 @@ public class Utility {
 	 * This function will set the given path file to be hidden.
 	 *
 	 * @param path            the file need to be hidden
-	 * @throws Exception the exception
+	 * @throws Exception the exception if file not exise
+	 * @throws NoSuchFileException
+	 * 				The file is not exist
 	 */
-	public static void sethidden(final String path) throws Exception {
-		try {
-			final File f = new File(path);
-			if (!f.exists()) {
-				throw new Exception("File not exists");
-			}
+	public static void sethidden(final String path) throws NoSuchFileException,Exception {
 			final Path p = Paths.get(path);
 			Files.setAttribute(p, "dos:hidden", Boolean.TRUE, LinkOption.NOFOLLOW_LINKS);
-		} catch (Exception e) {
-			throw e;
-		}
 	}
 
 	/**

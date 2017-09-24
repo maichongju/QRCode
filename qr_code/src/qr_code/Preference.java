@@ -42,7 +42,7 @@ public class Preference {
 	private final JButton bfront = new JButton("Change font color");
 	
 	/** The bapply. */
-	private final JButton bapply = new JButton("Apply");
+	private final JButton bapply = new JButton("Apply and Close");
 	
 	/** The lcbcolor. */
 	private final JLabel lcbcolor = new JLabel("Color");
@@ -88,7 +88,7 @@ public class Preference {
 	private void setWindow() {
 		frame.addWindowListener(new windowslistener());
 		frame.setContentPane(p);
-		frame.setSize(400, 180);
+		frame.setSize(500, 200);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setMinimumSize(frame.getSize());
@@ -115,6 +115,7 @@ public class Preference {
 		hGroup.addGap(30);
 		hGroup.addGroup(layout.createParallelGroup().addComponent(current).addComponent(lcbcolor).addComponent(lcfcolor)
 				.addComponent(bapply));
+		hGroup.addGap(10);
 		hGroup.addGroup(layout.createParallelGroup().addComponent(bClose));
 		layout.setHorizontalGroup(hGroup);
 
@@ -156,6 +157,7 @@ public class Preference {
 	private void setButton() {
 		bbackground.setActionCommand("BackgroundColor");
 		bfront.setActionCommand("FrontColor");
+		bapply.setActionCommand("ApplyAndClose");
 
 		ButtonListener l = new ButtonListener();
 		bbackground.addActionListener(l);
@@ -203,8 +205,10 @@ public class Preference {
 					break;
 				}
 				//Color Bug
-				case "Apply": {
+				case "ApplyAndClose": {
 					qr.ApplyColor(temp_qr);
+					frame.dispose();
+					frame = null;
 					break;
 				}
 				}

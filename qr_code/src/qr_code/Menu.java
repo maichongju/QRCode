@@ -20,6 +20,8 @@ public class Menu {
 	final QR_Code qr ;
 	/**
 	 * Main construe for Menu
+	 * @param qr
+	 * 			Active QR_Code object pass to the class 
 	 */
 	public Menu(QR_Code qr) {
 		this.qr = qr;

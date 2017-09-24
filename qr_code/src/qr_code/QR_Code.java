@@ -154,7 +154,6 @@ public class QR_Code {
 	 *
 	 * @param content            Information need to be convert to QRCode
 	 * @param imgpath            Image path that the be save
-	 * @return the qrcode image by contents
 	 * @throws Exception             All Exception
 	 */
 	public void getQrcodeImageByContents(String content, String imgpath) throws Exception {
